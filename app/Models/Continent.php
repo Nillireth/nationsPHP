@@ -42,4 +42,8 @@ class Continent extends Model
                                     'continent_id', 
                                     'region_id');
     }
+
+    public function pais(){
+        return $this->belongsTo(Region::class, 'continent_id');
+    }
 }

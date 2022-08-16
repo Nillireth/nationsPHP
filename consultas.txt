@@ -1,0 +1,503 @@
+//LIKE
+>>> Country::where('name' ,'like','C%')->
+... select('country_code2')->
+... get()
+=> Illuminate\Database\Eloquent\Collection {#3585
+     all: [
+       App\Models\Country {#3587
+         country_code2: "CF",
+       },
+       App\Models\Country {#3588
+         country_code2: "CA",
+       },
+       App\Models\Country {#3589
+         country_code2: "CC",
+       },
+       App\Models\Country {#3590
+         country_code2: "CL",
+       },
+       App\Models\Country {#3591
+         country_code2: "CN",
+       },
+       App\Models\Country {#3592
+         country_code2: "CI",
+       },
+       App\Models\Country {#3593
+         country_code2: "CM",
+       },
+       App\Models\Country {#3594
+         country_code2: "CG",
+       },
+       App\Models\Country {#3595
+         country_code2: "CK",
+       },
+       App\Models\Country {#3596
+         country_code2: "CO",
+       },
+       App\Models\Country {#3597
+         country_code2: "KM",
+       },
+       App\Models\Country {#3598
+         country_code2: "CV",
+       },
+       App\Models\Country {#3599
+         country_code2: "CR",
+       },
+       App\Models\Country {#3600
+         country_code2: "CU",
+       },
+       App\Models\Country {#3601
+         country_code2: "CX",
+       },
+       App\Models\Country {#3602
+         country_code2: "KY",
+       },
+       App\Models\Country {#3603
+         country_code2: "CY",
+       },
+       App\Models\Country {#3604
+         country_code2: "CZ",
+       },
+       App\Models\Country {#3605
+         country_code2: "HR",
+       },
+       App\Models\Country {#3606
+         country_code2: "KH",
+       },
+       App\Models\Country {#3607
+         country_code2: "TD",
+       },
+     ],
+   }
+>>>
+
+//TOTAL - SUM
+>>> Country::where('name' , 'like', 'C%')->
+... sum('area')
+=> "24980134.00"
+
+//MAYOR A
+>>> Country::where('area' , '>', 2000000)->
+... select('name')->
+... get()
+=> Illuminate\Database\Eloquent\Collection {#3564
+     all: [
+       App\Models\Country {#3563
+         name: "Argentina",
+       },
+       App\Models\Country {#3567
+         name: "Antarctica",
+       },
+       App\Models\Country {#3566
+         name: "Australia",
+       },
+       App\Models\Country {#3570
+         name: "Brazil",
+       },
+       App\Models\Country {#3555
+         name: "Canada",
+       },
+       App\Models\Country {#3571
+         name: "China",
+       },
+       App\Models\Country {#3577
+         name: "The Democratic Republic of the Congo",
+       },
+       App\Models\Country {#3553
+         name: "Algeria",
+       },
+       App\Models\Country {#3580
+         name: "Greenland",
+       },
+       App\Models\Country {#3576
+         name: "India",
+       },
+       App\Models\Country {#3575
+         name: "Kazakstan",
+       },
+       App\Models\Country {#3574
+         name: "Russian Federation",
+       },
+       App\Models\Country {#3572
+         name: "Saudi Arabia",
+       },
+       App\Models\Country {#3581
+         name: "Sudan",
+       },
+       App\Models\Country {#3582
+         name: "United States",
+       },
+     ],
+   }
+
+// FECHA ESPECIFICA
+>>> Country::select('name' , 'national_day')->
+... wherebetween('national_day', ['1492-10-12', '1789-07-14'])->
+... get()
+=> Illuminate\Database\Eloquent\Collection {#3582
+     all: [
+       App\Models\Country {#3615
+         name: "France",
+         national_day: "1789-07-14",
+       },
+       App\Models\Country {#3617
+         name: "Oman",
+         national_day: "1650-11-18",
+       },
+       App\Models\Country {#3622
+         name: "Portugal",
+         national_day: "1640-12-01",
+       },
+       App\Models\Country {#3623
+         name: "Sweden",
+         national_day: "1523-06-06",
+       },
+       App\Models\Country {#3624
+         name: "United States",
+         national_day: "1776-07-04",
+       },
+     ],
+   }
+
+   //RELACION DE 1 : M
+   >>> use App\Models\Country
+>>> use App\Models\Region
+>>> Region::find(1)
+=> App\Models\Region {#3567
+     region_id: 1,
+     name: "Caribbean",
+     continent_id: 1,
+   }
+
+>>> Region::find(1)->paises
+=> Illuminate\Database\Eloquent\Collection {#3594
+     all: [
+       App\Models\Country {#3596
+         country_id: 1,
+         name: "Aruba",
+         area: "193.00",
+         national_day: null,
+         country_code2: "AW",
+         country_code3: "ABW",
+         region_id: 1,
+       },
+       App\Models\Country {#3597
+         country_id: 4,
+         name: "Anguilla",
+         area: "96.00",
+         national_day: "1967-05-30",
+         country_code2: "AI",
+         country_code3: "AIA",
+         region_id: 1,
+       },
+       App\Models\Country {#3598
+         country_id: 7,
+         name: "Netherlands Antilles",
+         area: "800.00",
+         national_day: null,
+         country_code2: "AN",
+         country_code3: "ANT",
+         region_id: 1,
+       },
+       App\Models\Country {#3599
+         country_id: 14,
+         name: "Antigua and Barbuda",
+         area: "442.00",
+         national_day: "1981-11-01",
+         country_code2: "AG",
+         country_code3: "ATG",
+         region_id: 1,
+       },
+       App\Models\Country {#3600
+         country_id: 25,
+         name: "Bahamas",
+         area: "13878.00",
+         national_day: null,
+         country_code2: "BS",
+         country_code3: "BHS",
+         region_id: 1,
+       },
+       App\Models\Country {#3601
+         country_id: 32,
+         name: "Barbados",
+         area: "430.00",
+         national_day: "1966-11-30",
+         country_code2: "BB",
+         country_code3: "BRB",
+         region_id: 1,
+       },
+       App\Models\Country {#3602
+         country_id: 52,
+         name: "Cuba",
+         area: "110861.00",
+         national_day: "1868-10-10",
+         country_code2: "CU",
+         country_code3: "CUB",
+         region_id: 1,
+       },
+       App\Models\Country {#3603
+         country_id: 54,
+         name: "Cayman Islands",
+         area: "264.00",
+         national_day: null,
+         country_code2: "KY",
+         country_code3: "CYM",
+         region_id: 1,
+       },
+       App\Models\Country {#3604
+         country_id: 59,
+         name: "Dominica",
+         area: "751.00",
+         national_day: "1978-11-03",
+         country_code2: "DM",
+         country_code3: "DMA",
+         region_id: 1,
+       },
+       App\Models\Country {#3605
+         country_id: 61,
+         name: "Dominican Republic",
+         area: "48511.00",
+         national_day: null,
+         country_code2: "DO",
+         country_code3: "DOM",
+         region_id: 1,
+       },
+       App\Models\Country {#3606
+         country_id: 82,
+         name: "Guadeloupe",
+         area: "1705.00",
+         national_day: null,
+         country_code2: "GP",
+         country_code3: "GLP",
+         region_id: 1,
+       },
+       App\Models\Country {#3607
+         country_id: 87,
+         name: "Grenada",
+         area: "344.00",
+         national_day: "1974-02-07",
+         country_code2: "GD",
+         country_code3: "GRD",
+         region_id: 1,
+       },
+       App\Models\Country {#3608
+         country_id: 97,
+         name: "Haiti",
+         area: "27750.00",
+         national_day: "1804-01-01",
+         country_code2: "HT",
+         country_code3: "HTI",
+         region_id: 1,
+       },
+       App\Models\Country {#3609
+         country_id: 108,
+         name: "Jamaica",
+         area: "10990.00",
+         national_day: "1962-08-06",
+         country_code2: "JM",
+         country_code3: "JAM",
+         region_id: 1,
+       },
+       App\Models\Country {#3610
+         country_id: 116,
+         name: "Saint Kitts and Nevis",
+         area: "261.00",
+         national_day: "1983-09-19",
+         country_code2: "KN",
+         country_code3: "KNA",
+         region_id: 1,
+       },
+       App\Models\Country {#3611
+         country_id: 123,
+         name: "Saint Lucia",
+         area: "622.00",
+         national_day: "1979-02-22",
+         country_code2: "LC",
+         country_code3: "LCA",
+         region_id: 1,
+       },
+       App\Models\Country {#3612
+         country_id: 146,
+         name: "Montserrat",
+         area: "102.00",
+         national_day: null,
+         country_code2: "MS",
+         country_code3: "MSR",
+         region_id: 1,
+       },
+       App\Models\Country {#3613
+         country_id: 147,
+         name: "Martinique",
+         area: "1102.00",
+         national_day: null,
+         country_code2: "MQ",
+         country_code3: "MTQ",
+         region_id: 1,
+       },
+       App\Models\Country {#3614
+         country_id: 173,
+         name: "Puerto Rico",
+         area: "8875.00",
+         national_day: null,
+         country_code2: "PR",
+         country_code3: "PRI",
+         region_id: 1,
+       },
+       App\Models\Country {#3615
+         country_id: 205,
+         name: "Turks and Caicos Islands",
+         area: "430.00",
+         national_day: null,
+         country_code2: "TC",
+         country_code3: "TCA",
+         region_id: 1,
+       },
+       App\Models\Country {#3616
+         country_id: 214,
+         name: "Trinidad and Tobago",
+         area: "5130.00",
+         national_day: "1962-08-31",
+         country_code2: "TT",
+         country_code3: "TTO",
+         region_id: 1,
+       },
+       App\Models\Country {#3617
+         country_id: 227,
+         name: "Saint Vincent and the Grenadines",
+         area: "388.00",
+         national_day: "1979-10-27",
+         country_code2: "VC",
+         country_code3: "VCT",
+         region_id: 1,
+       },
+       App\Models\Country {#3618
+         country_id: 229,
+         name: "Virgin Islands, British",, British",
+         area: "151.00",      
+         national_day: null,  
+         country_code2: "VG", 
+         country_code3: "VGB",
+         region_id: 1,
+         region_id: 1,
+       },
+       App\Models\Country {#3619
+         country_id: 230,
+         name: "Virgin Islands, U.S.",
+         area: "347.00",
+         national_day: null,
+         country_code2: "VI",
+         country_code3: "VIR",
+
+//NOMBRE
+
+ Region::find(1)->paises()->select('name')->
+... get()
+=> Illuminate\Database\Eloquent\Collection {#3620
+     all: [
+       App\Models\Country {#3622
+         name: "Aruba",
+       },
+       App\Models\Country {#3623
+         name: "Anguilla",
+       },
+       App\Models\Country {#3624
+         name: "Netherlands Antilles",
+       },
+       App\Models\Country {#3625
+         name: "Antigua and Barbuda",
+       },
+       App\Models\Country {#3626
+         name: "Bahamas",
+       },
+       App\Models\Country {#3627
+         name: "Barbados",
+       },
+       App\Models\Country {#3628
+         name: "Cuba",
+       },
+       App\Models\Country {#3629
+         name: "Cayman Islands",
+       },
+       App\Models\Country {#3630
+         name: "Dominica",
+       },
+       App\Models\Country {#3631
+         name: "Dominican Republic",
+       },
+       App\Models\Country {#3632
+         name: "Guadeloupe",
+       },
+       App\Models\Country {#3633
+         name: "Grenada",
+       },
+       App\Models\Country {#3634
+         name: "Haiti",
+       },
+       App\Models\Country {#3635
+         name: "Jamaica",
+       },
+       App\Models\Country {#3636
+         name: "Saint Kitts and Nevis",
+       },
+       App\Models\Country {#3637
+         name: "Saint Lucia",
+       },
+       App\Models\Country {#3638
+         name: "Montserrat",
+       },
+       App\Models\Country {#3639
+         name: "Martinique",
+       },
+       App\Models\Country {#3640
+         name: "Puerto Rico",
+       },
+       App\Models\Country {#3641
+         name: "Turks and Caicos Islands",
+       },
+       App\Models\Country {#3642
+         name: "Trinidad and Tobago",
+       },
+       App\Models\Country {#3643
+         name: "Saint Vincent and the Grenadines",
+       },
+       App\Models\Country {#3644
+         name: "Virgin Islands, British",
+       },
+       App\Models\Country {#3645
+         name: "Virgin Islands, U.S.",
+       },
+     ],
+   }
+
+>>>
+
+Seleccione los países(únicamente el nombre) que hablan ingles, cuya fecha de
+independencia(national_day) fue anterior al siglo XIX.
+ Idioma::find(2)->paises()->
+... where('national_day', '<' , '1801-01-01')->
+... get()
+=> Illuminate\Database\Eloquent\Collection {#3614
+     all: [
+       App\Models\Country {#3563
+         country_id: 224,
+         name: "United States",
+         area: "9363520.00",
+         national_day: "1776-07-04",
+         country_code2: "US",
+         country_code3: "USA",
+         region_id: 15,
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#3595
+           language_id: 2,
+           country_id: 224,
+         },
+       },
+     ],
+   }
+
+En promedio, ¿Cual es el área de los países de Suramérica?
+>>> Region::find(6)->
+... paises()->
+... avg('area')
+=> "1276066.142857"
+
+A que ¿Continente Pertenece el país Belarus?
